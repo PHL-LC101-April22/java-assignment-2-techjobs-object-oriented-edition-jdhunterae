@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class Job {
     private static int nextId = 1;
-    private int id;
+    private final int id;
     private String name;
     private Employer employer;
     private Location location;
