@@ -40,7 +40,7 @@ public class Job {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getName(), getEmployer(), getLocation(), getPositionType(), getCoreCompetency());
+        return Objects.hash(getId());
     }
 
     public int getId() {
