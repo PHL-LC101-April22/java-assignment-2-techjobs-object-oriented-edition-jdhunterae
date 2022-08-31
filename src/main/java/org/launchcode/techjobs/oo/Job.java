@@ -27,7 +27,43 @@ public class Job {
 
     @Override
     public String toString() {
-        return name;
+        if (this.name != null || this.employer != null || this.location != null || this.positionType != null || this.coreCompetency != null) {
+            StringBuilder result = new StringBuilder();
+
+            result.append("\n");
+            result.append(String.format("ID: %d\n", id));
+            result.append(String.format("Name: %s\n", toStringValue(name)));
+            result.append(String.format("Employer: %s\n", toStringValue(employer)));
+            result.append(String.format("Location: %s\n", toStringValue(location)));
+            result.append(String.format("Position Type: %s\n", toStringValue(positionType)));
+            result.append(String.format("Core Competency: %s\n", toStringValue(coreCompetency)));
+            result.append("\n");
+
+            return result.toString();
+        } else {
+            return "OOPS! This job does not seem to exist.";
+        }
+    }
+
+    private String toStringValue(Object value) {
+        if (value != null) {
+            if (value instanceof String) {
+                String text = (String) value;
+                if (text.length() > 0) {
+                    return text;
+                }
+            } else if (value instanceof Employer) {
+                return ((Employer) value).getValue();
+            } else if (value instanceof Location) {
+                return ((Location) value).getValue();
+            } else if (value instanceof PositionType) {
+                return ((PositionType) value).getValue();
+            } else if (value instanceof CoreCompetency) {
+                return ((CoreCompetency) value).getValue();
+            }
+        }
+
+        return "Data not available";
     }
 
     @Override
