@@ -37,7 +37,6 @@ public class Job {
             result.append(String.format("Location: %s\n", toStringValue(location)));
             result.append(String.format("Position Type: %s\n", toStringValue(positionType)));
             result.append(String.format("Core Competency: %s\n", toStringValue(coreCompetency)));
-            result.append("\n");
 
             return result.toString();
         } else {
@@ -46,21 +45,24 @@ public class Job {
     }
 
     private String toStringValue(Object value) {
+        String text = "";
+
         if (value != null) {
             if (value instanceof String) {
-                String text = (String) value;
-                if (text.length() > 0) {
-                    return text;
-                }
+                text = (String) value;
             } else if (value instanceof Employer) {
-                return ((Employer) value).getValue();
+                text = ((Employer) value).getValue();
             } else if (value instanceof Location) {
-                return ((Location) value).getValue();
+                text = ((Location) value).getValue();
             } else if (value instanceof PositionType) {
-                return ((PositionType) value).getValue();
+                text = ((PositionType) value).getValue();
             } else if (value instanceof CoreCompetency) {
-                return ((CoreCompetency) value).getValue();
+                text = ((CoreCompetency) value).getValue();
             }
+        }
+
+        if (text.length() > 0) {
+            return text;
         }
 
         return "Data not available";
